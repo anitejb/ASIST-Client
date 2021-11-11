@@ -309,13 +309,37 @@ var getMapData = function(){
 
 var getGameData = function(){
     //game time '00' or minutes like '2'. If it was '2' that is timer with deadline, gameTimeArg would be {precision: 'secondTenths', countdown: true, startValues: {minutes: gameTime}}
-    let gameSetUpData = {"roundCount":0, "roundLimit":20000000, "playerX":5, "playerY":77, "playerName":"dude", "playerFrameWidth":32, 
-    "playerFrameHeight":48,"leaderName":null, "leaderDelay":null, "leaderX":null, "leaderY":null, 
-    gameTime:"00", gameTimeArg:{}}
+    let gameSetUpData = {
+        "roundCount":0,
+        "roundLimit":20000000,
+        "players":[{
+            "playerX":5,
+            "playerY":77,
+            "playerName":"dude",
+            "playerFrameWidth":32,
+            "playerFrameHeight":48,
+        },
+        {
+            "playerX":6,
+            "playerY":77,
+            "playerName":"player1",
+            "playerFrameWidth":32,
+            "playerFrameHeight":48,
+        }],
+        "leaderName":null,
+        "leaderDelay":null,
+        "leaderX":null,
+        "leaderY":null,
+        "leaderFrameWidth":32,
+        "leaderFrameHeight":48,
+        gameTime:"00",
+        gameTimeArg:{}
+    }
     return gameSetUpData
 }
 
-var getRandomConfig = function(){
+var getRandomConfig = function(seed){
+    Math.seedrandom(seed);
     var mapData = getMapData();
     for (let ri in mapData.roomFloorMapping){
         let length = mapData.roomFloorMapping[ri].length;
